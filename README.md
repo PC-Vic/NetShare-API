@@ -1,2 +1,2 @@
 # NetShare-API
-is a robust and flexible API designed to power your social network web application. It provides the core functionality for users to connect, share their thoughts, and engage with their friends and network.
+is a robust and flexible API designed to power your social network web application. It provides the core functionality for users to connect, share their thoughts, and engage with their friends and network.With features for user management, thought-sharing, reactions, and friend lists, NetShare API simplifies the development of your social networking platform. Built on Express.js and MongoDB with Mongoose, it's ready to handle large amounts of unstructured data, making it the ideal choice for your social network project.
