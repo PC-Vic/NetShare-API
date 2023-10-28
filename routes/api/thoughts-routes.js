@@ -35,3 +35,21 @@ router.get('/thoughts/:thoughtId', async (req, res) => {
         console.error(500).json(err);
     }
 });
+
+// Route to update thought by ID
+router.get('/thoughts/:thoughtId', async (res, req) => {
+    try{
+        const updatedThought = await Thought.findByIdAndUpdate(
+            req.params.thoughtId,
+            req.body,
+            { new: true }
+        );
+        if (!updatedThought) {
+            return res.status(404).json({ message: 'Thought not found' });
+        }
+        res.json(updatedThought);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json(err);
+    }
+});
