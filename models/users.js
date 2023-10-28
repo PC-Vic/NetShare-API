@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -11,23 +11,27 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    // Use a regular expression to validate the email format
     match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
   },
   thoughts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Thought', // Reference to the Thought model
+      ref: "Thought",
     },
   ],
   friends: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', // Self-reference to the User model
+      ref: "User",
     },
   ],
 });
 
-const User = mongoose.model('User', userSchema);
+// A virtual field to calculate the friend count
+userSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
+});
+
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
