@@ -1,4 +1,5 @@
-const Thought = require('../models/Thought');
+const connection = require('../config/connection');
+const Thought = require('../models/thoughts');
 
 const thoughtData = [
   {
@@ -39,4 +40,4 @@ const seedThoughts = async () => {
   }
 };
 
-seedThoughts();
+module.exports = seedThoughts;

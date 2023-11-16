@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models'); 
 
 // Route to get all users
-router.get('/users', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -13,7 +13,7 @@ router.get('/users', async (req, res) => {
 });
 
 // Route to create a new user
-router.post('/users', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newUser = await User.create(req.body);
     res.status(201).json(newUser);
@@ -24,7 +24,7 @@ router.post('/users', async (req, res) => {
 });
 
 // Route to get a single user by their ID
-router.get('/users/:userId', async (req, res) => {
+router.get('/:userId', async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     if (!user) {
@@ -38,7 +38,7 @@ router.get('/users/:userId', async (req, res) => {
 });
 
 // Route to update a user by their ID
-router.put('/users/:userId', async (req, res) => {
+router.put('/:userId', async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.userId,
@@ -56,7 +56,7 @@ router.put('/users/:userId', async (req, res) => {
 });
 
 // Route to delete a user by their ID
-router.delete('/users/:userId', async (req, res) => {
+router.delete('/:userId', async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.userId);
     if (!deletedUser) {

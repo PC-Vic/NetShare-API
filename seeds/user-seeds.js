@@ -1,4 +1,5 @@
-const User = require("../models/User");
+const connection = require('../config/connection');
+const User = require("../models/users");
 
 const userData = [
   {
@@ -32,4 +33,4 @@ const seedUsers = async () => {
   }
 };
 
-seedUsers();
+module.exports = seedUsers;

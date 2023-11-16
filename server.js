@@ -1,18 +1,20 @@
 const express = require('express');
-const app = express();
+const db = require('./config/connection');
+const userRoutes = require('./routes/api/user-routes');
+const thoughtRoutes = require('./routes/api/thoughts-routes');
+const { Thought, User } = require('./models');
 
 const PORT = process.env.PORT || 3001;
+const app = express();
 
-const startServer = async () => {
-  try {
-    await require('./config/connection'); // Require the database connection module
-    app.listen(PORT, () => {
-      console.log(`Server started on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
-};
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use('/api/users', userRoutes);
+app.use('/api/thoughts', thoughtRoutes);
 
-startServer();
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
+});
+
